@@ -36,7 +36,7 @@ void main(void) {
     TRISA  = 0b00010000;    //RA4を入力に設定
     
     //PWMの設定
-    APFCONbits.CCP1SEL = 1;          //CCPをRA%に割り当て
+    APFCONbits.CCP1SEL = 1;          //CCPをRA5に割り当て
     CCP1CONbits.CCP1M  = 0b1100;     //PWM機能を有効にして、PWM信号をactive-highに設定
     CCP1CONbits.P1M    = 0b00;       //RA2はGPIOに設定
     T2CONbits.T2CKPS   = 0b00;       //プリスケーラを1に設定
@@ -44,7 +44,7 @@ void main(void) {
     PR2                =  25;        //38kHz  周期 = ( PR2 + 1 ) x 4 x 1クロック分の時間 x プリスケーラ値
     CCPR1L             = 35 / 4;     //デューティー比は1/3  デューティーサイクル = (10ビットの値) x 1クロック分の時間 x プリスケーラ値
     CCP1CONbits.DC1B   = 35 & 0b11;  //下位2ビット
-    
+
     uint8_t data[4] = {0xE7, 0x30, 0xD1, 0x2E};
     
     while(1) {
